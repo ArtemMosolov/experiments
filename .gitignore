@@ -21,6 +21,8 @@ BARfiles/
 WESB_Conversions/
 wks/
 *.pdf
+.recommenders/
+RemoteSystemsTempFiles/
 
 # Maven #
 #########
