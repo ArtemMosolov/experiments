@@ -1,0 +1,31 @@
+# CVS #
+#######
+CVS/
+.cvsignore
+
+# IDE files #
+#############
+.metadata
+.settings
+.idea
+log/
+*.log
+*.class
+*.iml
+bin/
+*.bar
+*.jar
+GeneratedBarFiles/
+TestClientBarFiles/
+BARfiles/
+WESB_Conversions/
+wks/
+*.pdf
+
+# Maven #
+#########
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
