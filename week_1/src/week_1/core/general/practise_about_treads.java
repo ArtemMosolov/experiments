@@ -6,4 +6,6 @@ public class practise_about_treads {
 		
 	}
 	
+	// see  two_threads_three_methods.java
+	
 }
