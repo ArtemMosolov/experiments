@@ -9,23 +9,34 @@ enter simple Method Thread 2
 exit  simple Method Thread 1
 exit  simple Method Thread 2
 ============================
-simple Synchronized Method
+simple Synchronized Method     CASE 1
 ============================
-enter simple Synchronized Method Thread 2
-exit  simple Synchronized Method Thread 2
+enter simple Synchronized Method 1 Thread 1
 enter simple Synchronized Static Method Thread 3
 exit  simple Synchronized Static Method Thread 3
-enter simple Synchronized Method Thread 1
-exit  simple Synchronized Method Thread 1
+exit  simple Synchronized Method 1 Thread 1
+enter simple Synchronized Method 2 Thread 2
+exit  simple Synchronized Method 2 Thread 2
+============================
+simple Synchronized Method	   CASE 2
+============================
+enter simple Synchronized Static Method Thread 3
+enter simple Synchronized Method 1 Thread 1
+exit  simple Synchronized Method 1 Thread 1
+enter simple Synchronized Method 2 Thread 2
+exit  simple Synchronized Method 2 Thread 2
+exit  simple Synchronized Static Method Thread 3
 ============================
 simple Synchronized Static Method
 ============================
-enter simple Synchronized Static Method Thread 1
-exit  simple Synchronized Static Method Thread 1
-enter simple Synchronized Method Thread 3
-exit  simple Synchronized Method Thread 3
-enter simple Synchronized Static Method Thread 2
-exit  simple Synchronized Static Method Thread 2
+enter simple Synchronized Static Method 1 Thread 1
+exit  simple Synchronized Static Method 1 Thread 1
+enter simple Synchronized Static Method 1 Thread 2
+enter simple Synchronized Method 1 Thread 3
+exit  simple Synchronized Method 1 Thread 3
+exit  simple Synchronized Static Method 1 Thread 2
+enter simple Synchronized Static Method 2 Thread 4
+exit  simple Synchronized Static Method 2 Thread 4
 
 */
 public class two_threads_three_methods {
@@ -42,8 +53,8 @@ public class two_threads_three_methods {
 		/*System.out.println("============================");
 		System.out.println("simple Synchronized Method");
 		simpleSynchronizedMethodTest();
-		System.out.println("============================");
-		*/
+		System.out.println("============================");*/
+		
 		//Thread.currentThread().sleep(10000);
 		
 		System.out.println("============================");
@@ -83,7 +94,7 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				TestThreads.simpleSynchronizedStaticMethod("Thread 1");
+				TestThreads.simpleSynchronizedStaticMethod1("Thread 1");
 			}
 		});
 		
@@ -91,7 +102,7 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				TestThreads.simpleSynchronizedStaticMethod("Thread 2");
+				TestThreads.simpleSynchronizedStaticMethod1("Thread 2");
 			}
 		});
 				
@@ -99,13 +110,22 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				test.simpleSynchronizedMethod("Thread 3");
+				test.simpleSynchronizedMethod1("Thread 3");
+			}
+		});
+		
+		Thread t4 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				//sleep();
+				TestThreads.simpleSynchronizedStaticMethod2("Thread 4");
 			}
 		});
 		
 		t1.start();
 		t2.start();
 		t3.start();
+		t4.start();
 		
 	}
 	
@@ -117,7 +137,7 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				test.simpleSynchronizedMethod("Thread 1");
+				test.simpleSynchronizedMethod1("Thread 1");
 			}
 		});
 		
@@ -125,7 +145,7 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				test.simpleSynchronizedMethod("Thread 2");
+				test.simpleSynchronizedMethod2("Thread 2");
 			}
 		});
 		
@@ -133,13 +153,13 @@ public class two_threads_three_methods {
 			@Override
 			public void run() {
 				//sleep();
-				TestThreads.simpleSynchronizedStaticMethod("Thread 3");
+				TestThreads.simpleSynchronizedStaticMethod1("Thread 3");
 			}
 		});
-		
+		t3.start();
 		t1.start();
 		t2.start();
-		t3.start();
+		
 	}
 	
 	public static void sleep() {
@@ -157,19 +177,31 @@ class TestThreads {
 	public void simpleMethod(String threadName) {
 		System.out.println("enter simple Method " + threadName);
 		System.out.println("exit  simple Method " + threadName);
-		sleep();
+		//sleep();
 	}
 	
-	public synchronized static void simpleSynchronizedStaticMethod(String threadName) {
-		System.out.println("enter simple Synchronized Static Method " + threadName);
-		System.out.println("exit  simple Synchronized Static Method " + threadName);
-		sleep();
+	public synchronized static void simpleSynchronizedStaticMethod1(String threadName) {
+		System.out.println("enter simple Synchronized Static Method 1 " + threadName);
+		System.out.println("exit  simple Synchronized Static Method 1 " + threadName);
+		//sleep();
 	}
 	
-	public synchronized void simpleSynchronizedMethod(String threadName) {
-		System.out.println("enter simple Synchronized Method " + threadName);
-		System.out.println("exit  simple Synchronized Method " + threadName);
-		sleep();
+	public synchronized static void simpleSynchronizedStaticMethod2(String threadName) {
+		System.out.println("enter simple Synchronized Static Method 2 " + threadName);
+		System.out.println("exit  simple Synchronized Static Method 2 " + threadName);
+		//sleep();
+	}
+	
+	public synchronized void simpleSynchronizedMethod1(String threadName) {
+		System.out.println("enter simple Synchronized Method 1 " + threadName);
+		System.out.println("exit  simple Synchronized Method 1 " + threadName);
+		//sleep();
+	}
+	
+	public synchronized void simpleSynchronizedMethod2(String threadName) {
+		System.out.println("enter simple Synchronized Method 2 " + threadName);
+		System.out.println("exit  simple Synchronized Method 2 " + threadName);
+		//sleep();
 	}
 	
 	public static void sleep() {
