@@ -64,7 +64,7 @@ package week_1.core.concurrency;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Lock_vs_Sync_vs_Random {
+public class Lock_vs_Sync_vs_Random_vs_Volatile {
 	public static void main(String[] args) throws InterruptedException {
 		
 		Counter counter1 = new Counter();

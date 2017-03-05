@@ -1,6 +1,10 @@
 package week_1.core.concurrency;
 
-public class practise_about_treads {
+// find difference between   wait - notify - notifyAll  and Condition
+
+// Producer - Consumer pattern
+
+public class producer_consumer_classic_wait_and_notify {
 
 	public static void main(String[] args) {
 
