@@ -1,5 +1,7 @@
 package week_1.core.general;
 
+import java.io.IOException;
+
 public class overloading_overriding_diffs_and_rules {
 
 	public static void main(String[] args) {
@@ -64,17 +66,17 @@ class Sum {
 }
 
 class CarClass {
-	public int speedLimit() {
+	public int speedLimit() throws Exception {
 		return 100;
 	}
 }
 
 class Ford extends CarClass {
-	public int speedLimit() {
+	public int speedLimit() throws IOException {
 		return 150;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws Exception {
 		CarClass obj = new Ford();
 		int num = obj.speedLimit();
 		System.out.println("Speed Limit is: " + num);

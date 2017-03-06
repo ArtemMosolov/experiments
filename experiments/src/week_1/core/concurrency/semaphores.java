@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 public class semaphores {
 
 	public static void main(String[] args) {
-		Semaphore sem = new Semaphore(2); // 1 permission access
+		Semaphore sem = new Semaphore(1); // 1 permission access
 		CommonResource res = new CommonResource();
 		new Thread(new CountThread(res, sem, "CountThread 1")).start();
 		new Thread(new CountThread(res, sem, "CountThread 2")).start();

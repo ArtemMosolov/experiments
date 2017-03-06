@@ -1,5 +1,7 @@
 package week_1.core.concurrency;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /* 
  *   RESULT :
  *  
@@ -99,6 +101,14 @@ public class Lock_vs_Sync_vs_Random_vs_Volatile {
 		}
 		Thread.sleep(2000);
 		System.out.println("Final result " + counter4.count_volatile);
+		//====================================================
+		Counter counter5 = new Counter();
+		for(int i = 0; i < 3; i++) {
+			Thread t = new Thread(new CounterThreadAtomic(String.valueOf(i), counter5));
+			t.start();
+		}
+		Thread.sleep(2000);
+		System.out.println("Final result " + counter5.count_atomic);
 		
 	}
 }
@@ -106,6 +116,18 @@ public class Lock_vs_Sync_vs_Random_vs_Volatile {
 class Counter {
 	int count = 0;
 	volatile int count_volatile = 0;
+	AtomicInteger count_atomic = new AtomicInteger(0);
+	
+	public void incCountAtomic(String threadName) {
+		for(int i = 0; i < 3; i++) {
+			try {
+				Thread.sleep(1);
+				System.out.println("Thread with name " + threadName + " inc counter volatile to : " + count_atomic.incrementAndGet());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public synchronized void incCountVolatile(String threadName) {
 		for(int i = 0; i < 3; i++) {
@@ -160,6 +182,26 @@ class CounterThread implements Runnable {
 		try {
 			Thread.sleep(100);
 			counter.incCount(threadName);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}
+
+class CounterThreadAtomic implements Runnable {
+	private Counter counter;
+	private String threadName;
+	public CounterThreadAtomic(String threadName, Counter counter) {
+		super();
+		this.threadName = threadName;
+		this.counter = counter;
+	}
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(100);
+			counter.incCountAtomic(threadName);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
