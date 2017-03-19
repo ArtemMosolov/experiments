@@ -1,4 +1,4 @@
-package week_1.core.general.lambda;
+package week_1.core.general.java8.lambda;
 
 import java.util.Collections;
 import java.util.Comparator;

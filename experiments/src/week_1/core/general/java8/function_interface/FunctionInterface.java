@@ -1,4 +1,4 @@
-package week_1.core.general.function_interface;
+package week_1.core.general.java8.function_interface;
 
 import java.util.UUID;
 import java.util.function.BinaryOperator;
@@ -24,11 +24,11 @@ public class FunctionInterface {
 		UnaryOperator<Integer> square = x -> x * x;
 		System.out.println(square.apply(5)); // 25
 
-		Function<Integer, String> convert = x -> String.valueOf(x) + " долларов";
-		System.out.println(convert.apply(5)); // 5 долларов
+		Function<Integer, String> convert = x -> String.valueOf(x) + " money";
+		System.out.println(convert.apply(5)); // 5 
 
-		Consumer<Integer> printer = x -> System.out.printf("%d долларов \n", x);
-		printer.accept(600); // 600 долларов
+		Consumer<Integer> printer = x -> System.out.printf("%d money \n", x);
+		printer.accept(600); // 600 
 
 		Supplier<String> uuidFactory = () -> {
 			UUID uuid = UUID.randomUUID();

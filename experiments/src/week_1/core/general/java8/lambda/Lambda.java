@@ -1,4 +1,4 @@
-package week_1.core.general.lambda;
+package week_1.core.general.java8.lambda;
 
 public class Lambda {
 
