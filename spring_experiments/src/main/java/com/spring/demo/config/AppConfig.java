@@ -1,9 +1,6 @@
 package com.spring.demo.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import com.spring.demo.Test;
+import com.spring.demo.component.Test;
 
 //@Configuration
 public class AppConfig {

@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AOPControllerExample {
 	
-	@Before("execution(* com.spring.demo.Test.xz(..))")
+	@Before("execution(* com.spring.demo.component.Test.xz(..))")
 	public void logBefore(JoinPoint joinPoint) {
 		System.out.println("logBefore() is running!");
 		System.out.println("hijacked : " + joinPoint.getSignature().getName());
 		System.out.println("******");
 	}
+	
+	// Spring AOP or full AspectJ
 	
 }
