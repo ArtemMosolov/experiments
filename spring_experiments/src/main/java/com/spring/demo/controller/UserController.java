@@ -18,10 +18,18 @@ public class UserController {
 	@Autowired
 	private UserRepository repository;
 	
-	@RequestMapping(value = "/{login}", method = RequestMethod.GET)
-	public ResponseEntity<UserBean> getUserByLogin(@PathVariable String login) {
+	@RequestMapping(value = "/mongo/{login}", method = RequestMethod.GET)
+	public ResponseEntity<UserBean> getUserByLoginMongo(@PathVariable String login) {
 		ResponseEntity<UserBean> response;
-		UserBean userBean = repository.getUserByLogin(login);
+		UserBean userBean = repository.getUserByLoginMongo(login);
+		response = new ResponseEntity<>(userBean, HttpStatus.OK);
+		return response;
+	}
+	
+	@RequestMapping(value = "/jdbc/{login}", method = RequestMethod.GET)
+	public ResponseEntity<UserBean> getUserByLoginJDBC(@PathVariable String login) {
+		ResponseEntity<UserBean> response;
+		UserBean userBean = repository.getUserByLoginJDBC(login);
 		response = new ResponseEntity<>(userBean, HttpStatus.OK);
 		return response;
 	}
