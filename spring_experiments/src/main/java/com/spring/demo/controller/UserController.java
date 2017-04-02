@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.demo.bean.UserBean;
-import com.spring.demo.data.mongo.UserRepository;
+import com.spring.demo.data.UserRepository;
 
 @RestController
 @RequestMapping(value = "/user")

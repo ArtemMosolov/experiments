@@ -1,4 +1,4 @@
-package com.spring.demo.data.mongo;
+package com.spring.demo.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,8 +37,8 @@ public class UserRepository {
 	}
 	
 	public UserBean getUserByLoginJDBC(String login) {
-		String sqlSearchQuery = "select * from users";
-		List<UserBean> users = jdbcTemplate.query(sqlSearchQuery, new RowMapper<UserBean>() {
+		String sqlSearchQuery = "select * from users where login = ?";
+		UserBean user = jdbcTemplate.queryForObject(sqlSearchQuery, new Object[] { login }, new RowMapper<UserBean>() {
             public UserBean mapRow(ResultSet result, int rowNum) throws SQLException {
             	UserBean user = new UserBean();
                 user.setLogin(result.getString("login"));
@@ -46,7 +46,7 @@ public class UserRepository {
                 return user;
             }
         });
-		return users.get(0);
+		return user;
 	}
 	
 }

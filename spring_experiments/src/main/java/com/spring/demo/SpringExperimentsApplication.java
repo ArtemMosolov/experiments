@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 //@EnableAutoConfiguration
 //@ComponentScan("com.spring.demo")
 
-//@ImportResource("classpath:config.xml")   needed to load xml file with declared beans ...
+@ImportResource("classpath:config.xml")   //needed to load xml file with declared beans ...
 
 @SpringBootApplication
 public class SpringExperimentsApplication {
